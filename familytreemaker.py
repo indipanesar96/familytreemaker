@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# Copyright (C) 2013 Adrien Vergé
+# coding: utf-8
+# Copyright (C) 2013 Adrien Verg
 
 """familytreemaker
 
@@ -18,6 +18,8 @@ For instance:
 
 $ ./familytreemaker.py -a 'Louis XIV' LouisXIVfamily.txt | \
 	dot -Tpng -o LouisXIVfamily.png
+or
+$ python familytreemaker.py -a "Xiqing Wang" LouisXIVfamily.txt | dot -Tpng -o Zhongxuefamily.png
 
 will generate the tree from the infos in LouisXIVfamily.txt, starting from
 Louis XIV and saving the image in LouisXIVfamily.png.
@@ -25,7 +27,7 @@ Louis XIV and saving the image in LouisXIVfamily.png.
 """
 
 __author__ = "Adrien Vergé"
-__copyright__ = "Copyright 2013, Adrien Vergé"
+__copyright__ = "Copyright 2013, Adrien Verg"
 __license__ = "GPL"
 __version__ = "1.0"
 
@@ -33,6 +35,7 @@ import argparse
 import random
 import re
 import sys
+from pprint import pprint
 
 class Person:
 	"""This class represents a person.
@@ -85,20 +88,24 @@ class Person:
 	def graphviz(self):
 		label = self.name
 		if 'surname' in self.attr:
-			label += '\\n« ' + str(self.attr['surname']) + '»'
+			label += '\\n[ ' + self.attr['surname'] + ' ]'
 		if 'birthday' in self.attr:
 			label += '\\n' + str(self.attr['birthday'])
 			if 'deathday' in self.attr:
-				label += ' † ' + str(self.attr['deathday'])
+				label += ' - ' + str(self.attr['deathday'])
 		elif 'deathday' in self.attr:
-			label += '\\n† ' + str(self.attr['deathday'])
+			label += '\\n - ' + str(self.attr['deathday'])
 		if 'notes' in self.attr:
 			label += '\\n' + str(self.attr['notes'])
 		opts = ['label="' + label + '"']
 		opts.append('style=filled')
 		opts.append('fillcolor=' + ('F' in self.attr and 'bisque' or
 					('M' in self.attr and 'azure2' or 'white')))
-		return self.id + '[' + ','.join(opts) + ']'
+
+		#graph_label = (self.id + '[' + ','.join(opts) + ']') .encode('utf-8').decode('gbk')
+		graph_label = (self.id + '[' + ','.join (opts) + ']')
+		#print("DEBUG [{}]\n".format(graph_label,sys.stderr))
+		return graph_label
 
 class Household:
 	"""This class represents a household, i.e. a union of two person.
@@ -157,7 +164,7 @@ class Family:
 
 		"""
 		if len(h.parents) != 2:
-			print('error: number of parents != 2')
+			#print('error: number of parents != 2',file=sys.stderr)
 			return
 
 		h.id = len(self.households)
@@ -332,7 +339,8 @@ class Family:
 		      '\tedge [dir=none];\n')
 
 		for p in self.everybody.values():
-			print('\t' + p.graphviz() + ';')
+			#pprint(p.graphviz())
+			print('\t{0};'.format(p.graphviz()))
 		print('')
 
 		while gen:
@@ -359,7 +367,7 @@ def main():
 	family = Family()
 
 	# Populate the family
-	f = open(args.input, 'r', encoding='utf-8')
+	f = open (args.input, 'r', encoding='utf-8')
 	family.populate(f)
 	f.close()
 
