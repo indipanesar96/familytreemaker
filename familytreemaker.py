@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 # coding: utf-8
 # Copyright (C) 2013 Adrien Verg
+#
+# Optimized for chinese
+# Modified by Bodhi Wang
+# Oct 25, 2019
 
 """familytreemaker
 
@@ -114,12 +118,12 @@ class Person:
 			label += '\\n' + str(self.attr['notes'])
 		opts = ['label="' + label + '"']
 		opts.append('style=filled')
-		opts.append('fillcolor=' + ('女' in self.attr and 'bisque' or
-					('男' in self.attr and 'azure2' or 'white')))
+		#opts.append('fillcolor=' + ('女' in self.attr and 'bisque' or
+		#			('男' in self.attr and 'azure2' or 'white')))
+		opts.append ('fillcolor=' + (Family.gender['female'] in self.attr and 'bisque' or
+									(Family.gender['male'] in self.attr and 'azure2' or 'white')))
 
-		#graph_label = (self.id + '[' + ','.join(opts) + ']') .encode('utf-8').decode('gbk')
 		graph_label = (self.id + '[' + ','.join (opts) + ']')
-		#print("DEBUG [{}]\n".format(graph_label,sys.stderr))
 		return graph_label
 
 class Household:
@@ -155,12 +159,14 @@ class Family:
 
 	everybody = {}
 	households = []
+	gender = {'male':'男','female':'女'}
 
 	invisible = '[shape=circle,label="",height=0.01,width=0.01]';
 
-	def __init__(self, infolevel = 0, outmode = 0):
+	def __init__(self, infolevel = 0, outmode = 0, gender = "男,女"):
 		self.briefind, self.outmode = (infolevel, outmode)
-
+		if len (gender) == 2:
+			type(self).gender['male'], type(self).gender['female'] = (gender[0], gender[1])
 
 	def add_person(self, string):
 		"""Adds a person to self.everybody, or update his/her info if this
@@ -438,6 +444,8 @@ def main():
 	parser.add_argument('-a', dest='ancestor',
 						help='make the family tree from an ancestor (if '+
 						'omitted, the program will try to find an ancestor)')
+	parser.add_argument ('-g', dest='gender', action="store", default="男,女",
+						 help='customized gender string, for example: "男,女" or "M,F"')
 	parser.add_argument ('-v', dest='infolevel', action="store", default=0, type=int,
 						 help='Information level (0/1/2) to output. ('+
 						'0 - only name and surfname will be output; ' +
@@ -449,15 +457,26 @@ def main():
 						help='the formatted text file representing the family')
 	args = parser.parse_args()
 
-	#print("outfile[{}]".format(args.outfile), file=sys.stderr)
-	#sys.exit(0)
-
 	# Set indicator of brief informiation for output
 	infolevel = args.infolevel
 	if args.infolevel > 2:
 		infolevel = 2
 	elif args.infolevel < 0:
 		infolevel = 0
+
+	# split gender string
+	if "," in args.gender:
+		gender = args.gender.split(',')[:2]
+	elif ";" in args.gender:
+		gender = args.gender.split(';')[:2]
+	elif "/" in args.gender:
+		gender = args.gender.split('/')[:2]
+	elif "|" in args.gender:
+		gender = args.gender.split('|')[:2]
+	else:
+		gender = args.gender.split (' ')[:2]
+	if len(gender) < 2:
+		print("Warning: option gender will be ignored!", file=sys.stderr)
 
 	# 1 - iterator
 	# 0 - stdout
@@ -466,10 +485,8 @@ def main():
 	else:
 		outmode = 0
 
-	#print("briefind[{}]".format(briefind),file=sys.stderr)
-
 	# Create the family
-	family = Family(infolevel, outmode)
+	family = Family(infolevel, outmode, gender=gender)
 
 	# Populate the family
 	with open (args.input, 'r', encoding='utf-8') as f:
@@ -491,5 +508,8 @@ def main():
 			for i in family.output_descending_tree(ancestor):
 				f.write(str(i)+"\n")
 
+	sys.exit (0)
+
 if __name__ == '__main__':
 	main()
+
