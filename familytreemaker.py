@@ -107,13 +107,13 @@ class Person:
 			deathday = str(self.attr['deathday'])
 
 		if 'surname' in self.attr:
-			label += '\\n[ ' + self.attr['surname'] + ' ]'
+			label += '\\n« ' + self.attr['surname'] + ' »'
 		if infolevel > 0 and 'birthday' in self.attr:
 			label += '\\n' + birthday
 			if 'deathday' in self.attr:
-				label += ' - ' + deathday
+				label += ' † ' + deathday
 		elif infolevel > 0 and 'deathday' in self.attr:
-			label += '\\n - ' + deathday
+			label += '\\n † ' + deathday
 		if infolevel > 0 and 'notes' in self.attr:
 			label += '\\n' + str(self.attr['notes'])
 		opts = ['label="' + label + '"']
