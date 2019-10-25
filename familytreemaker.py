@@ -474,9 +474,8 @@ def main():
 	family = Family(infolevel, outmode)
 
 	# Populate the family
-	f = open (args.input, 'r', encoding='utf-8')
-	family.populate(f)
-	f.close()
+	with open (args.input, 'r', encoding='utf-8') as f:
+		family.populate(f)
 
 	# Find the ancestor from whom the tree is built
 	if args.ancestor:
