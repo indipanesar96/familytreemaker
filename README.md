@@ -8,7 +8,8 @@ by line, children just have to follow parents in the file. Persons can be
 repeated as long as they keep the same name or id. An example is given in the
 file `LouisXIVfamily.txt`.
 
-Note: This branch version is optimized for chinese and not for other languages.
+Note: This branch version is optimized for chinese. If other language for 
+      input text file is used, The command option gender (-g) should be used.
 
 
 Installation
