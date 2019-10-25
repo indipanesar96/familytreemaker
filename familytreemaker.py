@@ -35,7 +35,7 @@ import argparse
 import random
 import re
 import sys
-from pprint import pprint
+#from pprint import pprint
 
 class Person:
 	"""This class represents a person.
