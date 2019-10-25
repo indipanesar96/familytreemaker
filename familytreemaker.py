@@ -16,8 +16,6 @@ containing the graph, you will need a graph drawer such as GraphViz.
 
 For instance:
 
-$ python familytreemaker.py -a "Xiqing Wang" LouisXIVfamily.txt | dot -Tpng -o Zhongxuefamily.png
-or
 $ python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily.txt && \
     dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
 
