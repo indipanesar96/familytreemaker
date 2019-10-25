@@ -9,7 +9,9 @@ repeated as long as they keep the same name or id. An example is given in the
 file `LouisXIVfamily.txt`.
 
 Note: This branch version is optimized for chinese. If other language for 
-      input text file is used, The command option gender (-g) should be used.
+      input text file is used, command option gender (-g) has to be used to
+      specify words of male and female, since their default values are set
+      as "男" and "女" instead of origin "M" and "F".  
 
 
 Installation
