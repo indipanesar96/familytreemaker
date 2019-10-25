@@ -442,9 +442,9 @@ def main():
 						'omitted, the program will try to find an ancestor)')
 	parser.add_argument ('-v', dest='infolevel', action="store", default=0, type=int,
 						 help='Information level (0/1/2) to output. ('+
-							  '0 - only name and surfname will be output; ' +
-						      '1 - time of birthday and deathday will be invisable; ' +
-						      '2 - all information will be output)')
+						'0 - only name and surfname will be output; ' +
+						'1 - time of birthday and deathday will be invisable; ' +
+						'2 - all information will be output)')
 	parser.add_argument ('-o', dest='outfile', action="store",
 						 help='file name for output')
 	parser.add_argument('input', metavar='INPUTFILE',
