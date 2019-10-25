@@ -16,13 +16,13 @@ containing the graph, you will need a graph drawer such as GraphViz.
 
 For instance:
 
-$ ./familytreemaker.py -a 'Louis XIV' LouisXIVfamily.txt | \
-	dot -Tpng -o LouisXIVfamily.png
-or
 $ python familytreemaker.py -a "Xiqing Wang" LouisXIVfamily.txt | dot -Tpng -o Zhongxuefamily.png
+or
+$ python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily.txt && \
+    dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
 
 will generate the tree from the infos in LouisXIVfamily.txt, starting from
-Louis XIV and saving the image in LouisXIVfamily.png.
+"王灿文" and saving the image in LouisXIVfamily.svg.
 
 """
 
