@@ -44,10 +44,6 @@ optional arguments:
 The sample family descriptor `LouisXIVfamily.txt` is here to show you the
 usage. Simply run:
 ```
-$ ./familytreemaker.py -a '王灿文' -v0 LouisXIVfamily.txt | dot -Tsvg -o LouisXIVfamily.svg
-```
-or
-```
 python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily.txt && \
     dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
 ```
