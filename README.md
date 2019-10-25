@@ -53,7 +53,7 @@ python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamil
 ```
 
 It will generate the tree from the infos in `LouisXIVfamily.txt`, starting from
-*Louis XIV* and saving the image in `LouisXIVfamily.svg`.
+*王灿文* and saving the image in `LouisXIVfamily.svg`.
 
 
 You can see the result:
