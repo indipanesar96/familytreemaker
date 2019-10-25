@@ -21,7 +21,8 @@ containing the graph, you will need a graph drawer such as [GraphViz] [1].
 
 Usage
 -----
-usage: familytreemaker.py [-h] [-a ANCESTOR] [-v INFOLEVEL] [-o OUTFILE] 
+```
+usage: familytreemaker.py [-h] [-a ANCESTOR] [-v INFOLEVEL] [-o OUTFILE]  
                           INPUTFILE
 
 Generates a family tree graph from a simple text file
@@ -38,7 +39,7 @@ optional arguments:
                 1 - time of birthday and deathday will be invisable; 
                 2 - all information will be output 
   -o OUTFILE    file name for output 
-
+```
 
 The sample family descriptor `LouisXIVfamily.txt` is here to show you the
 usage. Simply run:
