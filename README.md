@@ -25,11 +25,19 @@ Usage
 The sample family descriptor `LouisXIVfamily.txt` is here to show you the
 usage. Simply run:
 ```
-$ ./familytreemaker.py -a 'Louis XIV' LouisXIVfamily.txt | dot -Tpng -o LouisXIVfamily.png
+$ ./familytreemaker.py -a '王灿文' -v0 LouisXIVfamily.txt | dot -Tsvg -o LouisXIVfamily.svg
 ```
+or
+```
+python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily.txt && \
+    dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
+```
+
 It will generate the tree from the infos in `LouisXIVfamily.txt`, starting from
-*Louis XIV* and saving the image in `LouisXIVfamily.png`.
+*Louis XIV* and saving the image in `LouisXIVfamily.svg`.
+
 
 You can see the result:
 
-![result: LouisXIVfamily.png](/LouisXIVfamily.png)
+![result: LouisXIVfamily.svg](/LouisXIVfamily.svg)
+
