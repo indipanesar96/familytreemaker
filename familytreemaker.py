@@ -85,22 +85,39 @@ class Person:
 		return	'Person: %s (%s)\n' % (self.name, str(self.attr)) + \
 				'  %d households' % len(self.households)
 
-	def graphviz(self):
+	def graphviz(self, infolevel=2):
+		"""
+		:param briefind: 2 - all information will be output.
+		                 1 - all information excluding time of birthday and deathday will be output
+		                 0 - only name and surfname will be output.
+		:return: label string
+		"""
 		label = self.name
+
+		if infolevel == 1 and 'birthday' in self.attr:
+			birthday = str(self.attr['birthday'].split('[')[0])
+		elif infolevel == 2 and 'birthday' in self.attr:
+			birthday = str(self.attr['birthday'])
+
+		if infolevel == 1 and 'deathday' in self.attr:
+			deathday = str(self.attr['deathday'].split('[')[0])
+		elif infolevel == 2 and 'deathday' in self.attr:
+			deathday = str(self.attr['deathday'])
+
 		if 'surname' in self.attr:
 			label += '\\n[ ' + self.attr['surname'] + ' ]'
-		if 'birthday' in self.attr:
-			label += '\\n' + str(self.attr['birthday'])
+		if infolevel > 0 and 'birthday' in self.attr:
+			label += '\\n' + birthday
 			if 'deathday' in self.attr:
-				label += ' - ' + str(self.attr['deathday'])
-		elif 'deathday' in self.attr:
-			label += '\\n - ' + str(self.attr['deathday'])
-		if 'notes' in self.attr:
+				label += ' - ' + deathday
+		elif infolevel > 0 and 'deathday' in self.attr:
+			label += '\\n - ' + deathday
+		if infolevel > 0 and 'notes' in self.attr:
 			label += '\\n' + str(self.attr['notes'])
 		opts = ['label="' + label + '"']
 		opts.append('style=filled')
-		opts.append('fillcolor=' + ('F' in self.attr and 'bisque' or
-					('M' in self.attr and 'azure2' or 'white')))
+		opts.append('fillcolor=' + ('女' in self.attr and 'bisque' or
+					('男' in self.attr and 'azure2' or 'white')))
 
 		#graph_label = (self.id + '[' + ','.join(opts) + ']') .encode('utf-8').decode('gbk')
 		graph_label = (self.id + '[' + ','.join (opts) + ']')
@@ -142,6 +159,10 @@ class Family:
 	households = []
 
 	invisible = '[shape=circle,label="",height=0.01,width=0.01]';
+
+	def __init__(self, infolevel = 0, outmode = 0):
+		self.briefind, self.outmode = (infolevel, outmode)
+
 
 	def add_person(self, string):
 		"""Adds a person to self.everybody, or update his/her info if this
@@ -257,7 +278,11 @@ class Family:
 
 		"""
 		# Display persons
-		print('\t{ rank=same;')
+		output = '\t{ rank=same;'
+		if self.outmode == 0:
+			print('{}'.format(output))
+		elif self.outmode == 1:
+			yield output
 
 		prev = None
 		for p in gen:
@@ -265,10 +290,17 @@ class Family:
 
 			if prev:
 				if l <= 1:
-					print('\t\t%s -> %s [style=invis];' % (prev, p.id))
+					output = '\t\t%s -> %s [style=invis];' % (prev, p.id)
+					#print('\t\t%s -> %s [style=invis];' % (prev, p.id))
 				else:
-					print('\t\t%s -> %s [style=invis];'
-						  % (prev, Family.get_spouse(p.households[0], p).id))
+					output = '\t\t%s -> %s [style=invis];'% (prev, Family.get_spouse(p.households[0], p).id)
+					# print('\t\t%s -> %s [style=invis];'
+					#	  % (prev, Family.get_spouse(p.households[0], p).id))
+
+				if self.outmode == 0:
+					print ('{}'.format (output))
+				elif self.outmode == 1:
+					yield output
 
 			if l == 0:
 				prev = p.id
@@ -282,46 +314,76 @@ class Family:
 			for i in range(0, int(l/2)):
 				h = p.households[i]
 				spouse = Family.get_spouse(h, p)
-				print('\t\t%s -> h%d -> %s;' % (spouse.id, h.id, p.id))
-				print('\t\th%d%s;' % (h.id, Family.invisible))
+				if self.outmode == 0:
+					print('\t\t%s -> h%d -> %s;' % (spouse.id, h.id, p.id))
+					print('\t\th%d%s;' % (h.id, Family.invisible))
+				else:
+					yield '\t\t%s -> h%d -> %s;' % (spouse.id, h.id, p.id)
+					yield '\t\th%d%s;' % (h.id, Family.invisible)
 
 			# Display those on the right (at least one)
 			for i in range(int(l/2), l):
 				h = p.households[i]
 				spouse = Family.get_spouse(h, p)
-				print('\t\t%s -> h%d -> %s;' % (p.id, h.id, spouse.id))
-				print('\t\th%d%s;' % (h.id, Family.invisible))
+				if self.outmode == 0:
+					print('\t\t%s -> h%d -> %s;' % (p.id, h.id, spouse.id))
+					print('\t\th%d%s;' % (h.id, Family.invisible))
+				else:
+					yield '\t\t%s -> h%d -> %s;' % (p.id, h.id, spouse.id)
+					yield '\t\th%d%s;' % (h.id, Family.invisible)
 				prev = spouse.id
-		print('\t}')
+		if self.outmode == 0:
+			print('\t}')
+		else:
+			yield '\t}'
 
 		# Display lines below households
-		print('\t{ rank=same;')
+		if self.outmode == 0:
+			print('\t{ rank=same;')
+		else:
+			yield '\t{ rank=same;'
 		prev = None
 		for p in gen:
 			for h in p.households:
 				if len(h.kids) == 0:
 					continue
 				if prev:
-					print('\t\t%s -> h%d_0 [style=invis];' % (prev, h.id))
+					if self.outmode == 0:
+						print('\t\t%s -> h%d_0 [style=invis];' % (prev, h.id))
+					else:
+						yield '\t\t%s -> h%d_0 [style=invis];' % (prev, h.id)
 				l = len(h.kids)
 				if l % 2 == 0:
 					# We need to add a node to keep symmetry
 					l += 1
-				print('\t\t' + ' -> '.join(map(lambda x: 'h%d_%d' % (h.id, x), range(l))) + ';')
+				if self.outmode == 0:
+					print('\t\t' + ' -> '.join(map(lambda x: 'h%d_%d' % (h.id, x), range(l))) + ';')
+				else:
+					yield '\t\t' + ' -> '.join (map (lambda x: 'h%d_%d' % (h.id, x), range (l))) + ';'
 				for i in range(l):
-					print('\t\th%d_%d%s;' % (h.id, i, Family.invisible))
+					if self.outmode == 0:
+						print('\t\th%d_%d%s;' % (h.id, i, Family.invisible))
+					else:
+						yield '\t\th%d_%d%s;' % (h.id, i, Family.invisible)
 					prev = 'h%d_%d' % (h.id, i)
-		print('\t}')
+		if self.outmode == 0:
+			print('\t}')
+		else:
+			yield '\t}'
 
 		for p in gen:
 			for h in p.households:
 				if len(h.kids) > 0:
-					print('\t\th%d -> h%d_%d;'
-					      % (h.id, h.id, int(len(h.kids)/2)))
+					if self.outmode == 0:
+						print('\t\th%d -> h%d_%d;' % (h.id, h.id, int(len(h.kids)/2)))
+					else:
+						yield '\t\th%d -> h%d_%d;' % (h.id, h.id, int(len(h.kids)/2))
 					i = 0
 					for c in h.kids:
-						print('\t\th%d_%d -> %s;'
-						      % (h.id, i, c.id))
+						if self.outmode == 0:
+							print('\t\th%d_%d -> %s;' % (h.id, i, c.id))
+						else:
+							yield '\t\th%d_%d -> %s;' % (h.id, i, c.id)
 						i += 1
 						if i == len(h.kids)/2:
 							i += 1
@@ -334,20 +396,39 @@ class Family:
 		# Find the first households
 		gen = [ancestor]
 
-		print('digraph {\n' + \
-		      '\tnode [shape=box];\n' + \
-		      '\tedge [dir=none];\n')
+		if self.outmode == 0:
+			print('digraph {\n' + \
+		    	  '\tnode [shape=box];\n' + \
+		   		   '\tedge [dir=none];\n')
+		else:
+			yield 'digraph {\n' + \
+				   '\tnode [shape=box];\n' + \
+				   '\tedge [dir=none];\n'
 
 		for p in self.everybody.values():
 			#pprint(p.graphviz())
-			print('\t{0};'.format(p.graphviz()))
-		print('')
+			if self.outmode == 0:
+				print('\t{0};'.format(p.graphviz(self.briefind)))
+			else:
+				yield '\t{0};'.format(p.graphviz(self.briefind))
+		if self.outmode == 0:
+			print('')
+		else:
+			yield ''
 
 		while gen:
-			self.display_generation(gen)
+			if self.outmode == 0:
+				self.display_generation(gen)
+			else:
+				for i in self.display_generation(gen):
+					yield str(i)
 			gen = self.next_generation(gen)
 
-		print('}')
+		if self.outmode == 0:
+			print('}')
+		else:
+			yield '}'
+
 
 def main():
 	"""Entry point of the program when called as a script.
@@ -359,12 +440,38 @@ def main():
 	parser.add_argument('-a', dest='ancestor',
 						help='make the family tree from an ancestor (if '+
 						'omitted, the program will try to find an ancestor)')
+	parser.add_argument ('-v', dest='infolevel', action="store", default=0, type=int,
+						 help='Information level (0/1/2) to output. ('+
+							  '0 - only name and surfname will be output; ' +
+						      '1 - time of birthday and deathday will be invisable; ' +
+						      '2 - all information will be output)')
+	parser.add_argument ('-o', dest='outfile', action="store",
+						 help='file name for output')
 	parser.add_argument('input', metavar='INPUTFILE',
 						help='the formatted text file representing the family')
 	args = parser.parse_args()
 
+	#print("outfile[{}]".format(args.outfile), file=sys.stderr)
+	#sys.exit(0)
+
+	# Set indicator of brief informiation for output
+	infolevel = args.infolevel
+	if args.infolevel > 2:
+		infolevel = 2
+	elif args.infolevel < 0:
+		infolevel = 0
+
+	# 1 - iterator
+	# 0 - stdout
+	if args.outfile:
+		outmode = 1
+	else:
+		outmode = 0
+
+	#print("briefind[{}]".format(briefind),file=sys.stderr)
+
 	# Create the family
-	family = Family()
+	family = Family(infolevel, outmode)
 
 	# Populate the family
 	f = open (args.input, 'r', encoding='utf-8')
@@ -380,7 +487,12 @@ def main():
 		ancestor = family.find_first_ancestor()
 
 	# Output the graph descriptor, in DOT format
-	family.output_descending_tree(ancestor)
+	if outmode == 0:
+		family.output_descending_tree(ancestor)
+	else:
+		with open(args.outfile, "w", encoding="utf-8") as f:
+			for i in family.output_descending_tree(ancestor):
+				f.write(str(i)+"\n")
 
 if __name__ == '__main__':
 	main()
