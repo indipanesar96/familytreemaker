@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-# coding: utf-8
+# -*- coding: utf-8 -*-
 # Copyright (C) 2013 Adrien Verg
+# Copyright (C) 2019 Bodhi Wang
 #
 # Optimized for chinese
 # Modified by Bodhi Wang
@@ -28,8 +29,8 @@ will generate the tree from the infos in LouisXIVfamily.txt, starting from
 
 """
 
-__author__ = "Adrien Vergé"
-__copyright__ = "Copyright 2013, Adrien Verg"
+__author__ = "Adrien Vergé, Bodhi Wang"
+__copyright__ = ["Copyright 2013 Adrien Verg", "Copyright 2019, Bodhi Wang"]
 __license__ = "GPL"
 __version__ = "1.0"
 
