@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Copyright (C) 2013 Adrien Verg
-# Copyright (C) 2019 Bodhi Wang
+# Copyright (C) 2013 Adrien Verg, 2019 Bodhi Wang
 #
-# Optimized for chinese
+# Optimized for chinese support, and add functions to output DOT into file with
+# three levels.
 # Modified by Bodhi Wang
 # Oct 25, 2019
 
@@ -21,8 +21,7 @@ containing the graph, you will need a graph drawer such as GraphViz.
 
 For instance:
 
-$ python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily.txt && \
-    dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
+$ python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily.txt && dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
 
 will generate the tree from the infos in LouisXIVfamily.txt, starting from
 "王灿文" and saving the image in LouisXIVfamily.svg.
@@ -30,8 +29,8 @@ will generate the tree from the infos in LouisXIVfamily.txt, starting from
 """
 
 __author__ = "Adrien Vergé, Bodhi Wang"
-__copyright__ = ["Copyright 2013 Adrien Verg", "Copyright 2019, Bodhi Wang"]
-__license__ = "GPL"
+__copyright__ = "Copyright 2013 Adrien Verg, 2019 Bodhi Wang"
+__license__ = "MIT"
 __version__ = "1.0"
 
 import argparse
