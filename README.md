@@ -5,7 +5,7 @@ This program creates family tree graphs from simple text files.
 
 The input file format is very simple, you describe persons of your family line
 by line, children just have to follow parents in the file. Persons can be
-repeated as long as they keep the same nme or id. An example is given in the
+repeated as long as they keep the same name or id. An example is given in the
 file `LouisXIVfamily.txt`.
 
 Note: This branch version is optimized for chinese. If other language for 
@@ -17,7 +17,10 @@ Note: This branch version is optimized for chinese. If other language for
 Installation
 ------------
 
-Simply clone the repo.
+Simply clone the repo or install package familytree by pip as shown below:
+```bash
+pip install familytree
+```
 
 This script outputs a graph descriptor in DOT format. To make the image
 containing the graph, you will need a graph drawer such as [GraphViz] [1].
@@ -50,14 +53,11 @@ optional arguments:
 The sample family descriptor `LouisXIVfamily.txt` is here to show you the
 usage. Simply run:
 ```
-python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily.txt && dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
+python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily.txt && \
+    dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
 ```
 
 It will generate the tree from the infos in `LouisXIVfamily.txt`, starting from
 *王灿文* and saving the image in `LouisXIVfamily.svg`.
 
-
-You can see the result:
-
 ![result: LouisXIVfamily.svg](./LouisXIVfamily.svg)
-
