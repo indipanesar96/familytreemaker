@@ -162,9 +162,9 @@ class Family:
 
 	invisible = '[shape=circle,label="",height=0.01,width=0.01]';
 
-	def __init__(self, infolevel = 0, outmode = 0, gender = "男,女"):
+	def __init__(self, infolevel = 0, outmode = 0, gender = ["男","女"]):
 		self.briefind, self.outmode = (infolevel, outmode)
-		if len (gender) == 2:
+		if len (gender) >= 2:
 			type(self).gender['male'], type(self).gender['female'] = (gender[0], gender[1])
 
 	def add_person(self, string):
