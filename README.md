@@ -57,7 +57,13 @@ python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamil
     dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
 ```
 
+If package familytree has been installed by pip, commands below can be performed to populate:
+```bash
+python -m familytree.familytreemaker -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily.txt && \
+    dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
+``` 
+
 It will generate the tree from the infos in `LouisXIVfamily.txt`, starting from
 *王灿文* and saving the image in `LouisXIVfamily.svg`.
 
-![result: LouisXIVfamily.png](LouisXIVfamily.png)
+![result: LouisXIVfamily.svg](./LouisXIVfamily.svg)
