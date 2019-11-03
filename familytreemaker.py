@@ -110,9 +110,9 @@ class Person:
 		if infolevel > 0 and 'birthday' in self.attr:
 			label += '\\n' + birthday
 			if 'deathday' in self.attr:
-				label += ' † ' + deathday
+				label += ' ~ ' + deathday
 		elif infolevel > 0 and 'deathday' in self.attr:
-			label += '\\n † ' + deathday
+			label += '\\n ~ ' + deathday
 		if infolevel > 0 and 'notes' in self.attr:
 			label += '\\n' + str(self.attr['notes'])
 		opts = ['label="' + label + '"']

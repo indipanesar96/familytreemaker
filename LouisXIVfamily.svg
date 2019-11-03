@@ -9,18 +9,13 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 279)">
 <title>%3</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-279 450,-279 450,4 -4,4"/>
-<!-- FanqingKong -->
-<g id="node1" class="node"><title>FanqingKong</title>
-<polygon fill="bisque" stroke="black" points="280.5,-163 225.5,-163 225.5,-127 280.5,-127 280.5,-163"/>
-<text text-anchor="middle" x="253" y="-141.3" font-family="Times New Roman,serif" font-size="14.00">孔繁清</text>
+<!-- XiqingWang -->
+<g id="node1" class="node"><title>XiqingWang</title>
+<polygon fill="#e0eeee" stroke="black" points="446,-53 324,-53 324,-0 446,-0 446,-53"/>
+<text text-anchor="middle" x="385" y="-37.8" font-family="Times New Roman,serif" font-size="14.00">王锡卿</text>
+<text text-anchor="middle" x="385" y="-22.8" font-family="Times New Roman,serif" font-size="14.00">« 二十五世 »</text>
+<text text-anchor="middle" x="385" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">1925&#45;08&#45;28 ~ 1997</text>
 </g>
-<!-- KunpingWang -->
-<g id="node3" class="node"><title>KunpingWang</title>
-<polygon fill="#e0eeee" stroke="black" points="389,-164 299,-164 299,-126 389,-126 389,-164"/>
-<text text-anchor="middle" x="344" y="-148.8" font-family="Times New Roman,serif" font-size="14.00">王坤坪</text>
-<text text-anchor="middle" x="344" y="-133.8" font-family="Times New Roman,serif" font-size="14.00">« 二十四世 »</text>
-</g>
-<!-- FanqingKong&#45;&gt;KunpingWang -->
 <!-- KuntaoWang -->
 <g id="node2" class="node"><title>KuntaoWang</title>
 <polygon fill="#e0eeee" stroke="black" points="188,-164 98,-164 98,-126 188,-126 188,-164"/>
@@ -35,22 +30,13 @@
 <g id="edge8" class="edge"><title>KuntaoWang&#45;&gt;h1</title>
 <path fill="none" stroke="black" d="M188.5,-145C194.474,-145 200.448,-145 206.422,-145"/>
 </g>
-<!-- XijunWang -->
-<g id="node4" class="node"><title>XijunWang</title>
-<polygon fill="bisque" stroke="black" points="306,-45.5 216,-45.5 216,-7.5 306,-7.5 306,-45.5"/>
-<text text-anchor="middle" x="261" y="-30.3" font-family="Times New Roman,serif" font-size="14.00">王锡君</text>
-<text text-anchor="middle" x="261" y="-15.3" font-family="Times New Roman,serif" font-size="14.00">« 二十五世 »</text>
+<!-- ZhangshiWang -->
+<g id="node3" class="node"><title>ZhangshiWang</title>
+<polygon fill="bisque" stroke="black" points="357.5,-274 302.5,-274 302.5,-238 357.5,-238 357.5,-274"/>
+<text text-anchor="middle" x="330" y="-252.3" font-family="Times New Roman,serif" font-size="14.00">王张氏</text>
 </g>
-<!-- XiqingWang -->
-<g id="node5" class="node"><title>XiqingWang</title>
-<polygon fill="#e0eeee" stroke="black" points="446,-53 324,-53 324,-0 446,-0 446,-53"/>
-<text text-anchor="middle" x="385" y="-37.8" font-family="Times New Roman,serif" font-size="14.00">王锡卿</text>
-<text text-anchor="middle" x="385" y="-22.8" font-family="Times New Roman,serif" font-size="14.00">« 二十五世 »</text>
-<text text-anchor="middle" x="385" y="-7.8" font-family="Times New Roman,serif" font-size="14.00">1925&#45;08&#45;28 † 1997</text>
-</g>
-<!-- XijunWang&#45;&gt;XiqingWang -->
 <!-- CanwenWang -->
-<g id="node6" class="node"><title>CanwenWang</title>
+<g id="node4" class="node"><title>CanwenWang</title>
 <polygon fill="#e0eeee" stroke="black" points="265,-275 175,-275 175,-237 265,-237 265,-275"/>
 <text text-anchor="middle" x="220" y="-259.8" font-family="Times New Roman,serif" font-size="14.00">王灿文</text>
 <text text-anchor="middle" x="220" y="-244.8" font-family="Times New Roman,serif" font-size="14.00">« 二十三世 »</text>
@@ -63,6 +49,19 @@
 <g id="edge1" class="edge"><title>CanwenWang&#45;&gt;h0</title>
 <path fill="none" stroke="black" d="M265.5,-256C271.474,-256 277.448,-256 283.422,-256"/>
 </g>
+<!-- KunpingWang -->
+<g id="node5" class="node"><title>KunpingWang</title>
+<polygon fill="#e0eeee" stroke="black" points="389,-164 299,-164 299,-126 389,-126 389,-164"/>
+<text text-anchor="middle" x="344" y="-148.8" font-family="Times New Roman,serif" font-size="14.00">王坤坪</text>
+<text text-anchor="middle" x="344" y="-133.8" font-family="Times New Roman,serif" font-size="14.00">« 二十四世 »</text>
+</g>
+<!-- XijunWang -->
+<g id="node6" class="node"><title>XijunWang</title>
+<polygon fill="bisque" stroke="black" points="306,-45.5 216,-45.5 216,-7.5 306,-7.5 306,-45.5"/>
+<text text-anchor="middle" x="261" y="-30.3" font-family="Times New Roman,serif" font-size="14.00">王锡君</text>
+<text text-anchor="middle" x="261" y="-15.3" font-family="Times New Roman,serif" font-size="14.00">« 二十五世 »</text>
+</g>
+<!-- XijunWang&#45;&gt;XiqingWang -->
 <!-- XihuaWang -->
 <g id="node7" class="node"><title>XihuaWang</title>
 <polygon fill="#e0eeee" stroke="black" points="198,-45.5 108,-45.5 108,-7.5 198,-7.5 198,-45.5"/>
@@ -77,11 +76,12 @@
 <text text-anchor="middle" x="45" y="-15.3" font-family="Times New Roman,serif" font-size="14.00">« 二十五世 »</text>
 </g>
 <!-- XichunWang&#45;&gt;XihuaWang -->
-<!-- ZhangshiWang -->
-<g id="node9" class="node"><title>ZhangshiWang</title>
-<polygon fill="bisque" stroke="black" points="357.5,-274 302.5,-274 302.5,-238 357.5,-238 357.5,-274"/>
-<text text-anchor="middle" x="330" y="-252.3" font-family="Times New Roman,serif" font-size="14.00">王张氏</text>
+<!-- FanqingKong -->
+<g id="node9" class="node"><title>FanqingKong</title>
+<polygon fill="bisque" stroke="black" points="280.5,-163 225.5,-163 225.5,-127 280.5,-127 280.5,-163"/>
+<text text-anchor="middle" x="253" y="-141.3" font-family="Times New Roman,serif" font-size="14.00">孔繁清</text>
 </g>
+<!-- FanqingKong&#45;&gt;KunpingWang -->
 <!-- h0&#45;&gt;ZhangshiWang -->
 <g id="edge2" class="edge"><title>h0&#45;&gt;ZhangshiWang</title>
 <path fill="none" stroke="black" d="M284.719,-256C290.615,-256 296.511,-256 302.407,-256"/>
