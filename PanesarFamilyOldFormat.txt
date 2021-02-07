@@ -1,0 +1,18 @@
+# Two lines represent an union:
+Gurdev S Panesar (M, birthday=1638-09-05, deathday=1715-09-01)
+Tavinder K Panesar (F)
+# Indented lines after the union represent children
+	Sukhi S Panesar (id=Sukhi, M, birthday=1661-11-01, deathday=1711-04-14)
+	Nirmal S Panesar (id=Nim, M, birthday=1661-11-01, deathday=1711-04-14)
+	Jugjit S Panesar (id=Jugjit, M, birthday=1661-11-01, deathday=1711-04-14)
+	Kamaljit K Panesar (id=Kamaljit, F, birthday=1661-11-01, deathday=1711-04-14)
+
+
+# Another union (2 parents + 3 children), father is one the previous union's children:
+Sukhi S Panesar (id=Sukhi)
+Daljit K Panesar (F, surname=Nota, birthday=1966-10-10)
+	Baljit K Panesar (id=Baljit, F, birthday=1661-11-01, deathday=1711-04-14)
+	Harminder K Panesar (id=Harminder, F, birthday=1661-11-01, deathday=1711-04-14)
+	Harjinder K Panesar (id=Harjinder, F, birthday=1661-11-01, deathday=1711-04-14)
+	Inderpal S Panesar (id=Inderpal, M, birthday=1661-11-01, deathday=1711-04-14)
+	Pardeep S Panesar (id=Pardeep, M, birthday=1661-11-01, deathday=1711-04-14)

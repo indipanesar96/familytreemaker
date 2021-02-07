@@ -59,7 +59,7 @@ python familytreemaker.py -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamil
 
 If package familytree has been installed by pip, commands below can be performed to populate:
 ```bash
-python -m familytree.familytreemaker -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily.txt && \
+python -m familytree.familytreemaker -a "王灿文" -v2 -o LouisXIVfamily.dot LouisXIVfamily1.txt && \
     dot -Tsvg -o LouisXIVfamily.svg LouisXIVfamily.dot
 ``` 
 
