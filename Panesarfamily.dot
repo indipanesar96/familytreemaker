@@ -5,7 +5,7 @@ digraph {
 	GurdevSPanesar[label="Gurdev S Panesar\n1638-09-05 ~ 1715-09-01",style=filled,fillcolor=azure2];
 	TavinderKPanesar[label="Tavinder K Panesar",style=filled,fillcolor=bisque];
 	Sukhi[label="Sukhi S Panesar\n1661-11-01 ~ 1711-04-14",style=filled,fillcolor=azure2];
-	Nim[label="Nirmal S Panesar\n1661-11-01 ~ 1711-04-14",style=filled,fillcolor=azure2];
+	Nirmal[label="Nirmal S Panesar\n1661-11-01 ~ 1711-04-14",style=filled,fillcolor=azure2];
 	Jugjit[label="Jugjit S Panesar\n1661-11-01 ~ 1711-04-14",style=filled,fillcolor=azure2];
 	Kamaljit[label="Kamaljit K Panesar\n1661-11-01 ~ 1711-04-14",style=filled,fillcolor=bisque];
 	DaljitKPanesar[label="Daljit K Panesar\n« Nota »\n1966-10-10",style=filled,fillcolor=bisque];
@@ -14,6 +14,9 @@ digraph {
 	Harjinder[label="Harjinder K Panesar\n1661-11-01 ~ 1711-04-14",style=filled,fillcolor=bisque];
 	Inderpal[label="Inderpal S Panesar\n1661-11-01 ~ 1711-04-14",style=filled,fillcolor=azure2];
 	Pardeep[label="Pardeep S Panesar\n1661-11-01 ~ 1711-04-14",style=filled,fillcolor=azure2];
+	Ravinder[label="Ravinder K Panesar\n« Nota »\n1966-10-10",style=filled,fillcolor=bisque];
+	Hardeep[label="Hardeep K Panesar\n1661-11-01 ~ 1711-04-14",style=filled,fillcolor=bisque];
+	Tanbir[label="Tanbir S Panesar\n1661-11-01 ~ 1711-04-14",style=filled,fillcolor=bisque];
 
 	{ rank=same;
 		GurdevSPanesar -> h0 -> TavinderKPanesar;
@@ -29,14 +32,16 @@ digraph {
 	}
 		h0 -> h0_2;
 		h0_0 -> Sukhi;
-		h0_1 -> Nim;
+		h0_1 -> Nirmal;
 		h0_3 -> Jugjit;
 		h0_4 -> Kamaljit;
 	{ rank=same;
 		Sukhi -> h1 -> DaljitKPanesar;
 		h1[shape=circle,label="",height=0.01,width=0.01];
-		DaljitKPanesar -> Nim [style=invis];
-		Nim -> Jugjit [style=invis];
+		DaljitKPanesar -> Nirmal [style=invis];
+		Nirmal -> h2 -> Ravinder;
+		h2[shape=circle,label="",height=0.01,width=0.01];
+		Ravinder -> Jugjit [style=invis];
 		Jugjit -> Kamaljit [style=invis];
 	}
 	{ rank=same;
@@ -46,6 +51,11 @@ digraph {
 		h1_2[shape=circle,label="",height=0.01,width=0.01];
 		h1_3[shape=circle,label="",height=0.01,width=0.01];
 		h1_4[shape=circle,label="",height=0.01,width=0.01];
+		h1_4 -> h2_0 [style=invis];
+		h2_0 -> h2_1 -> h2_2;
+		h2_0[shape=circle,label="",height=0.01,width=0.01];
+		h2_1[shape=circle,label="",height=0.01,width=0.01];
+		h2_2[shape=circle,label="",height=0.01,width=0.01];
 	}
 		h1 -> h1_2;
 		h1_0 -> Baljit;
@@ -53,11 +63,16 @@ digraph {
 		h1_2 -> Harjinder;
 		h1_3 -> Inderpal;
 		h1_4 -> Pardeep;
+		h2 -> h2_1;
+		h2_0 -> Hardeep;
+		h2_2 -> Tanbir;
 	{ rank=same;
 		Baljit -> Harminder [style=invis];
 		Harminder -> Harjinder [style=invis];
 		Harjinder -> Inderpal [style=invis];
 		Inderpal -> Pardeep [style=invis];
+		Pardeep -> Hardeep [style=invis];
+		Hardeep -> Tanbir [style=invis];
 	}
 	{ rank=same;
 	}
